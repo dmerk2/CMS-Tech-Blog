@@ -1,10 +1,10 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-// Initialize the Comment mode by extending off Seuqlize's Model class
+// Initialize the Comment model by extending off Sequlize's Model class
 class Comment extends Model {}
 
-// Create fiels and rules for the Comment model
+// Create fields and rules for the Comment model
 Comment.init(
   {
     id: {
