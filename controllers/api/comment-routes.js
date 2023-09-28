@@ -1,10 +1,10 @@
 const router = require("express").Router();
-const { Comment } = require("../../models");
+const { Comment, User } = require("../../models");
 
 router.get("/", async (req, res) => {
   try {
     const commentData = await Comment.findAll({
-      include: [{ model: "user" }],
+      include: [{ model: User }],
     });
     res.json(commentData);
   } catch (error) {
@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const commentData = await Comment.findByPk(req.params.id, {
-      include: [{ model: "user" }],
+      include: [{ model: User }],
     });
     if (!commentData) {
       res.status(404).json({ message: "No comment found" });
