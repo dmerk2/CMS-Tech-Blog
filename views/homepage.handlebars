@@ -3,7 +3,9 @@
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">{{title}}</h5>
-        <p class="card-text">{{user.username}} Created At: {{format_date createdAt}}{{log createdAt}}</p>
+        <p class="card-text"><strong>Created By:</strong> {{user.username}}
+          <strong>Created At:</strong>
+          {{format_date createdAt}}</p>
         <a href="/post/{{id}}">Read More</a>
       </div>
     </div>
