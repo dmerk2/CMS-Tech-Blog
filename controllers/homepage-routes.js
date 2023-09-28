@@ -5,6 +5,7 @@ router.get("/", async (req, res) => {
   try {
     const posts = await Post.findAll({
       include: [User],
+      // attributes: ["id", "title", "createdAt"],
     });
     const postData = posts.map((post) => post.get({ plain: true }));
     res.render("homepage", { postData, user_id: req.session.user_id });
