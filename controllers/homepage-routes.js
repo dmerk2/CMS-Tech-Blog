@@ -6,8 +6,16 @@ router.get("/", async (req, res) => {
     const posts = await Post.findAll({
       include: [User],
     });
-    const postData = posts.map((post) => post.get({ plain: true }));
-    res.render("homepage", { postData, user_id: req.session.user_id });
+    const postData = posts.map((post) => post.toJSON());
+
+    // Set loggedIn based on whether user is authenticated
+    const loggedIn = req.session.user_id ? true : false;
+
+    res.render("homepage", {
+      postData,
+      loggedIn,
+      user_id: req.session.user_id,
+    });
   } catch (error) {
     res.status(500).json(error);
   }
@@ -15,7 +23,6 @@ router.get("/", async (req, res) => {
 
 router.get("/post/:id", async (req, res) => {
   try {
-    console.log("Route GET", req.params.id);
     const onePost = await Post.findByPk(req.params.id, {
       include: [
         {
@@ -38,7 +45,6 @@ router.get("/post/:id", async (req, res) => {
       ],
     });
     const post = onePost.get({ plain: true });
-    console.log(post);
     return res.render("single-post", { post, user_id: req.session.user_id });
   } catch (error) {
     res.status(500).json(error);

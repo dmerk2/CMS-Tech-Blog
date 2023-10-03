@@ -1,34 +1,32 @@
 const router = require("express").Router();
 const { Post } = require("../../models");
 
-router.get("/", async (req, res) => {
-  try {
-    const postData = await Post.findAll();
-    res.json(postData);
-  } catch (error) {
-    res.status(500).json(error);
-  }
-});
-
-router.get("/:id", async (req, res) => {
-  try {
-    const postData = await Post.findByPk();
-    if (!postData) {
-      res.status(404).json({ message: "No post found" });
-    }
-    res.json(postData);
-  } catch (error) {
-    res.status(500).json(error);
-  }
-});
-
 router.post("/", async (req, res) => {
   try {
-    const createPost = await Post.create(req.body);
-    if (!createPost) {
-      res.status(404).json({ message: "No post found" });
+    if (!req.body.content) {
+      return res.status(400).json({ message: "Content is required." });
     }
-    res.json(createPost);
+
+    const newPost = await Post.create({
+      title: req.body.title,
+      content: req.body.content,
+      user_id: req.session.user_id,
+    });
+    res.json(newPost);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+router.put("/:id", async (req, res) => {
+  try {
+    console.log(req.body, req.params.id);
+    const updatePost = await Post.update(req.body, {
+      where: {
+        id: req.params.id,
+      },
+    });
+    res.json(updatePost);
   } catch (error) {
     res.status(500).json(error);
   }
@@ -41,9 +39,6 @@ router.delete("/:id", async (req, res) => {
         id: req.params.id,
       },
     });
-    if (!deletePost) {
-      res.status(404).json({ message: "No post found" });
-    }
     res.json(deletePost);
   } catch (error) {
     res.status(500).json(error);

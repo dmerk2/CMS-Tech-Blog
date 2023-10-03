@@ -8,8 +8,8 @@ router.post("/signup", async (req, res) => {
       (req.session.user_id = userData.id),
         (req.session.username = userData.username),
         (req.session.loggedIn = true);
+      res.json(userData);
     });
-    res.json(userData);
   } catch (error) {
     res.status(500).json(error);
   }
@@ -17,31 +17,26 @@ router.post("/signup", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   try {
-    console.log("Login", req.body);
     const userData = await User.findOne({
       where: {
         username: req.body.username,
       },
     });
     if (!userData) {
-      console.log("This is being read, for username");
       res.status(404).json({ message: "No user found" });
       return;
     }
     const validPassword = userData.checkPassword(req.body.password);
     if (!validPassword) {
-      console.log("This is being read, for password");
       res.status(404).json({ message: "No user found" });
       return;
     }
     req.session.save(() => {
-      req.session.user_id = userData.id,
-        req.session.username = userData.username,
-        req.session.loggedIn = true;
-        res.json(userData);
-        console.log(req.session.loggedIn);
+      (req.session.user_id = userData.id),
+        (req.session.username = userData.username),
+        (req.session.loggedIn = true);
+      res.json(userData);
     });
-    console.log(userData);
   } catch (error) {
     res.status(500).json(error);
   }
