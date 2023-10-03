@@ -33,7 +33,7 @@ const deletePost = async (event) => {
 
   if (response.ok) {
     alert("Your Post was successfully deleted");
-    window.location.assign("/dashboard");
+    document.location.replace("/dashboard");
   } else {
     alert("Something went wrong");
   }

@@ -4,20 +4,20 @@ const withAuth = require("../../utils/auth");
 
 router.post("/", withAuth, async (req, res) => {
   try {
-    // check the session
     if (req.session) {
       const newComment = await Comment.create({
         comment: req.body.comment,
         post_id: req.body.post_id,
-        // use the id from the session
         user_id: req.session.user_id,
       });
       res.json(newComment);
     }
   } catch (error) {
-    res.status(500).json(error);
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
+
 
 router.delete("/:id", withAuth, async (req, res) => {
   try {
