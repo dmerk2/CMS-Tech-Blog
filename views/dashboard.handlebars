@@ -1,28 +1,29 @@
-
 <div class="container my-4">
   {{#each posts}}
-  {{log posts}}
-  <div class="card">
-    <div class="card-header d-flex justify-content-between">
-      <h3 class="card-title text-center">{{title}}</h3>
-      <a href="/dashboard/post/{{id}}"><i class="fa-solid fa-pen-to-square"></i></a>
+    {{log posts}}
+    <div class="card">
+      <div class="card-header d-flex justify-content-between">
+        <h3 class="card-title text-center">{{title}}</h3>
+        <a href="/dashboard/post/{{id}}"><i
+            class="fa-solid fa-pen-to-square"
+          ></i></a>
+      </div>
+      <div class="card-body">
+        <p class="card-text">{{content}}</p>
+      </div>
+      <div class="card-footer">
+        <p><strong>Created by: </strong>{{user.username}}
+          <strong>Created on: </strong>{{format_date createdAt}}</p>
+      </div>
     </div>
-    <div class="card-body">
-      <p class="card-text">{{content}}</p>
-    </div>
-    <div class="card-footer">
-      <p><strong>Created by: </strong>{{user.username}}
-        <strong>Created on: </strong>{{format_date createdAt}}</p>
-    </div>
-  </div>
   {{/each}}
 </div>
 
 <form class="container new-post">
   <div class="card">
-    <div class="card-header ">
+    <div class="card-header">
       <h2 class="card-title text-center">Create a new post</h2>
-      
+
     </div>
     <div class="form-group px-3">
       <label for="post-title">Post Title:</label>

@@ -1,10 +1,16 @@
-.fa-pen-to-square{
-  color:whitesmoke;
+.fa-pen-to-square {
+  color: whitesmoke;
+  font-size: 1.5rem;
 }
 
-.footer-icons{
+.footer-icons {
   font-size: 1.2rem;
   justify-content: center;
-  gap:20vw;
+  gap: 20vw;
 
+}
+
+.comments {
+  gap: 10vw;
+  min-height: 20px;
 }
