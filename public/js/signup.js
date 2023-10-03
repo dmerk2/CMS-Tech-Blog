@@ -6,6 +6,8 @@ const signupFormHandler = async (event) => {
 
   if (!username || !password) {
     alert("Please enter your username and password");
+  } else if (password.length < 6) {
+    alert("Password must be at least 6 characters long");
   }
 
   if (username && password) {
@@ -26,4 +28,3 @@ const signupFormHandler = async (event) => {
 document
   .querySelector(".signup-form")
   .addEventListener("submit", signupFormHandler);
-5;

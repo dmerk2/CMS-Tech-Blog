@@ -5,7 +5,9 @@ const postHandler = async (event) => {
   const body = document.querySelector("#post-body").value.trim();
 
   if (!title || !body) {
-    alert("Please enter a new post");
+    alert("Please enter your username and password");
+  } else if (body.length < 8) {
+    alert("Password must be at least 6 characters long");
   }
 
   if (title && body) {
