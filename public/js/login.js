@@ -4,6 +4,10 @@ const loginHandler = async (event) => {
   const username = document.querySelector("#username-login").value.trim();
   const password = document.querySelector("#password-login").value.trim();
 
+  if (!username || !password) {
+    alert("Please enter your username and password");
+  }
+
   if (username && password) {
     const response = await fetch("/api/users/login", {
       method: "POST",
@@ -18,6 +22,4 @@ const loginHandler = async (event) => {
   }
 };
 
-document
-  .querySelector(".login-form")
-  .addEventListener("submit", loginHandler);
+document.querySelector(".login-form").addEventListener("submit", loginHandler);
