@@ -4,7 +4,7 @@ const sequelize = require("../config/connection");
 // Initialize the Comment model by extending off Sequlize's Model class
 class Comment extends Model {}
 
-// Create fields and rules for the Comment model
+// Create attributes and rules for the Comment model
 Comment.init(
   {
     id: {
@@ -15,6 +15,11 @@ Comment.init(
     },
     comment: {
       type: DataTypes.STRING,
+      allowNull: false,
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
       allowNull: false,
     },
     user_id: {
