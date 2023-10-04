@@ -15,7 +15,7 @@ const commentHandler = async (event) => {
       headers: { "Content-Type": "application/json" },
     });
     if (response.ok) {
-      document.location.replace("/");
+      document.location.replace(`/post/${post_id}`);
     } else {
       alert("Failed to comment!");
     }
