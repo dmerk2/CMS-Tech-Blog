@@ -28,7 +28,6 @@ The CMS-Style Blog Site is a dynamic web application that provides users with a 
 - **Idle Timeout:** If a user remains idle on the site for an extended period, they can still view posts and comments, but they will be prompted to log in again before being able to add, update, or delete posts.
 - **Deployment:** You can access the deployed application on Heroku via *https://thawing-ridge-20238-f4b31f8a8c44.herokuapp.com/*.
 
-
 Follow the installation instructions below to get started with the Tech Blog Application.
 
 ## Installation on local machine
@@ -76,6 +75,14 @@ Open your web browser and go to **http://localhost:3001** to access the Tech Blo
 ## Deployed Application
 
 Click the lightning bolt [⚡](https://thawing-ridge-20238-f4b31f8a8c44.herokuapp.com/) to go to the tech blog on Heroku!
+
+Homepage:
+
+![Homepage](./public/images/homepage.png)
+
+Login/Signup Page:
+
+![coding quiz](./public/images/login.png)
 
 ## License
 
