@@ -45,7 +45,11 @@ router.get("/post/:id", async (req, res) => {
       ],
     });
     const post = onePost.get({ plain: true });
-    return res.render("single-post", { post, user_id: req.session.user_id });
+    return res.render("single-post", {
+      post,
+      loggedIn: req.session.loggedIn,
+      user_id: req.session.user_id,
+    });
   } catch (error) {
     res.status(500).json(error);
   }

@@ -13,20 +13,6 @@ router.post("/", withAuth, async (req, res) => {
       res.json(newComment);
     }
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-});
-
-router.delete("/:id", withAuth, async (req, res) => {
-  try {
-    const deleteComment = await Comment.destroy({
-      where: {
-        id: req.params.id,
-      },
-    });
-    res.json(deleteComment);
-  } catch (error) {
     res.status(500).json(error);
   }
 });
